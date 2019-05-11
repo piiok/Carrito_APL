@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3681f385754048e79ae4a77ad96e37d9" Name="Diagram1">
+        <EntityTypeShape EntityType="db_carrito_aplModel.cargo_ciudades" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.categorias" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.ciudades" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.compradores" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.departamentos" Width="1.5" PointX="1.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.direcciones" Width="1.5" PointX="9" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.especificaciones" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.facturas" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.items" Width="1.5" PointX="8.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.paises" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.productos" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.tarjetas" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.transportes" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="db_carrito_aplModel.cargo_ciudades_fk_ciudad_ciudades_pk_ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.cargo_ciudades_fk_transporte_transportes_pk_transporte" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.productos_fk_categoria_categorias_pk_categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.ciudades_fk_departamento_departamentos_pk_departamento" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.direcciones_fk_ciudad_ciudades_pk_ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.direcciones_fk_comprador_compradores_pk_comprador" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.facturas_fk_comprador_compradores_pk_comprador" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.tarjetas_fk_comprador_compradores_pk_comprador" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.departamentos_fk_pais_paises_pk_pais" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.especificaciones_fk_producto_productos_pk_producto" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.facturas_fk_tarjeta_tarjetas_pk_tarjeta" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.items_fk_factura_facturas_pk_factura" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.items_fk_producto_productos_pk_producto" ManuallyRouted="false" />
+        <AssociationConnector Association="db_carrito_aplModel.productos_fk_transporte_transportes_pk_transporte" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

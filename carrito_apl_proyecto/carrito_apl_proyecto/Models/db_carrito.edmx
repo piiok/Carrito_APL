@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_carrito_aplModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cargo_ciudades">
+          <Key>
+            <PropertyRef Name="pk_cargo_ciudades" />
+          </Key>
+          <Property Name="pk_cargo_ciudades" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_transporte" Type="int" />
+          <Property Name="fk_ciudad" Type="int" Nullable="false" />
+          <Property Name="costo" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="pk_categoria" />
+          </Key>
+          <Property Name="pk_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ciudades">
+          <Key>
+            <PropertyRef Name="pk_ciudad" />
+          </Key>
+          <Property Name="pk_ciudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_departamento" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="compradores">
+          <Key>
+            <PropertyRef Name="pk_comprador" />
+          </Key>
+          <Property Name="pk_comprador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="tipo_documento" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="celular" Type="varchar" MaxLength="15" />
+          <Property Name="genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departamentos">
+          <Key>
+            <PropertyRef Name="pk_departamento" />
+          </Key>
+          <Property Name="pk_departamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_pais" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="direcciones">
+          <Key>
+            <PropertyRef Name="pk_direccion" />
+          </Key>
+          <Property Name="pk_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_comprador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fk_ciudad" Type="int" Nullable="false" />
+          <Property Name="tag" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre_receptor" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="celular" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="direccion" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="especificaciones">
+          <Key>
+            <PropertyRef Name="pk_especificacion" />
+          </Key>
+          <Property Name="pk_especificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_producto" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facturas">
+          <Key>
+            <PropertyRef Name="pk_factura" />
+          </Key>
+          <Property Name="pk_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_tarjeta" Type="int" />
+          <Property Name="fk_comprador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_pago" Type="date" />
+          <Property Name="total" Type="money" Nullable="false" />
+          <Property Name="CVV" Type="varchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="pk_item" />
+          </Key>
+          <Property Name="pk_item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_producto" Type="int" Nullable="false" />
+          <Property Name="fk_factura" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paises">
+          <Key>
+            <PropertyRef Name="pk_pais" />
+          </Key>
+          <Property Name="pk_pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="pk_producto" />
+          </Key>
+          <Property Name="pk_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_transporte" Type="int" Nullable="false" />
+          <Property Name="fk_categoria" Type="int" Nullable="false" />
+          <Property Name="fotos" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descuento" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="existencias" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tarjetas">
+          <Key>
+            <PropertyRef Name="pk_tarjeta" />
+          </Key>
+          <Property Name="pk_tarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_comprador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="numero_tarjeta" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_vencimiento" Type="date" Nullable="false" />
+          <Property Name="CVV" Type="varchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transportes">
+          <Key>
+            <PropertyRef Name="pk_transporte" />
+          </Key>
+          <Property Name="pk_transporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="descripcion" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="cargo_ciudades_fk_ciudad_ciudades_pk_ciudad">
+          <End Role="ciudades" Type="Self.ciudades" Multiplicity="1" />
+          <End Role="cargo_ciudades" Type="Self.cargo_ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="pk_ciudad" />
+            </Principal>
+            <Dependent Role="cargo_ciudades">
+              <PropertyRef Name="fk_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cargo_ciudades_fk_transporte_transportes_pk_transporte">
+          <End Role="transportes" Type="Self.transportes" Multiplicity="0..1" />
+          <End Role="cargo_ciudades" Type="Self.cargo_ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transportes">
+              <PropertyRef Name="pk_transporte" />
+            </Principal>
+            <Dependent Role="cargo_ciudades">
+              <PropertyRef Name="fk_transporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ciudades_fk_departamento_departamentos_pk_departamento">
+          <End Role="departamentos" Type="Self.departamentos" Multiplicity="1" />
+          <End Role="ciudades" Type="Self.ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamentos">
+              <PropertyRef Name="pk_departamento" />
+            </Principal>
+            <Dependent Role="ciudades">
+              <PropertyRef Name="fk_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="departamentos_fk_pais_paises_pk_pais">
+          <End Role="paises" Type="Self.paises" Multiplicity="1" />
+          <End Role="departamentos" Type="Self.departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paises">
+              <PropertyRef Name="pk_pais" />
+            </Principal>
+            <Dependent Role="departamentos">
+              <PropertyRef Name="fk_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direcciones_fk_ciudad_ciudades_pk_ciudad">
+          <End Role="ciudades" Type="Self.ciudades" Multiplicity="1" />
+          <End Role="direcciones" Type="Self.direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="pk_ciudad" />
+            </Principal>
+            <Dependent Role="direcciones">
+              <PropertyRef Name="fk_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direcciones_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="direcciones" Type="Self.direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="direcciones">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="especificaciones_fk_producto_productos_pk_producto">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="especificaciones" Type="Self.especificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="pk_producto" />
+            </Principal>
+            <Dependent Role="especificaciones">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="facturas_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="facturas">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="facturas_fk_tarjeta_tarjetas_pk_tarjeta">
+          <End Role="tarjetas" Type="Self.tarjetas" Multiplicity="0..1" />
+          <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarjetas">
+              <PropertyRef Name="pk_tarjeta" />
+            </Principal>
+            <Dependent Role="facturas">
+              <PropertyRef Name="fk_tarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="items_fk_factura_facturas_pk_factura">
+          <End Role="facturas" Type="Self.facturas" Multiplicity="1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facturas">
+              <PropertyRef Name="pk_factura" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="fk_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="items_fk_producto_productos_pk_producto">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="pk_producto" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_fk_categoria_categorias_pk_categoria">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="pk_categoria" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="fk_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_fk_transporte_transportes_pk_transporte">
+          <End Role="transportes" Type="Self.transportes" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transportes">
+              <PropertyRef Name="pk_transporte" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="fk_transporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tarjetas_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="tarjetas" Type="Self.tarjetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="tarjetas">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_carrito_aplModelStoreContainer">
+          <EntitySet Name="cargo_ciudades" EntityType="Self.cargo_ciudades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ciudades" EntityType="Self.ciudades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="compradores" EntityType="Self.compradores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departamentos" EntityType="Self.departamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="direcciones" EntityType="Self.direcciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="especificaciones" EntityType="Self.especificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facturas" EntityType="Self.facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paises" EntityType="Self.paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tarjetas" EntityType="Self.tarjetas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transportes" EntityType="Self.transportes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="cargo_ciudades_fk_ciudad_ciudades_pk_ciudad" Association="Self.cargo_ciudades_fk_ciudad_ciudades_pk_ciudad">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="cargo_ciudades" EntitySet="cargo_ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="cargo_ciudades_fk_transporte_transportes_pk_transporte" Association="Self.cargo_ciudades_fk_transporte_transportes_pk_transporte">
+            <End Role="transportes" EntitySet="transportes" />
+            <End Role="cargo_ciudades" EntitySet="cargo_ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="ciudades_fk_departamento_departamentos_pk_departamento" Association="Self.ciudades_fk_departamento_departamentos_pk_departamento">
+            <End Role="departamentos" EntitySet="departamentos" />
+            <End Role="ciudades" EntitySet="ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="departamentos_fk_pais_paises_pk_pais" Association="Self.departamentos_fk_pais_paises_pk_pais">
+            <End Role="paises" EntitySet="paises" />
+            <End Role="departamentos" EntitySet="departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="direcciones_fk_ciudad_ciudades_pk_ciudad" Association="Self.direcciones_fk_ciudad_ciudades_pk_ciudad">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="direcciones" EntitySet="direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="direcciones_fk_comprador_compradores_pk_comprador" Association="Self.direcciones_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="direcciones" EntitySet="direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="especificaciones_fk_producto_productos_pk_producto" Association="Self.especificaciones_fk_producto_productos_pk_producto">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="especificaciones" EntitySet="especificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="facturas_fk_comprador_compradores_pk_comprador" Association="Self.facturas_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="facturas" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="facturas_fk_tarjeta_tarjetas_pk_tarjeta" Association="Self.facturas_fk_tarjeta_tarjetas_pk_tarjeta">
+            <End Role="tarjetas" EntitySet="tarjetas" />
+            <End Role="facturas" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="items_fk_factura_facturas_pk_factura" Association="Self.items_fk_factura_facturas_pk_factura">
+            <End Role="facturas" EntitySet="facturas" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="items_fk_producto_productos_pk_producto" Association="Self.items_fk_producto_productos_pk_producto">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="productos_fk_categoria_categorias_pk_categoria" Association="Self.productos_fk_categoria_categorias_pk_categoria">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="productos_fk_transporte_transportes_pk_transporte" Association="Self.productos_fk_transporte_transportes_pk_transporte">
+            <End Role="transportes" EntitySet="transportes" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="tarjetas_fk_comprador_compradores_pk_comprador" Association="Self.tarjetas_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="tarjetas" EntitySet="tarjetas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_carrito_aplModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cargo_ciudades">
+          <Key>
+            <PropertyRef Name="pk_cargo_ciudades" />
+          </Key>
+          <Property Name="pk_cargo_ciudades" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_transporte" Type="Int32" />
+          <Property Name="fk_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="costo" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="ciudades" Relationship="Self.cargo_ciudades_fk_ciudad_ciudades_pk_ciudad" FromRole="cargo_ciudades" ToRole="ciudades" />
+          <NavigationProperty Name="transportes" Relationship="Self.cargo_ciudades_fk_transporte_transportes_pk_transporte" FromRole="cargo_ciudades" ToRole="transportes" />
+        </EntityType>
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="pk_categoria" />
+          </Key>
+          <Property Name="pk_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="productos" Relationship="Self.productos_fk_categoria_categorias_pk_categoria" FromRole="categorias" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="ciudades">
+          <Key>
+            <PropertyRef Name="pk_ciudad" />
+          </Key>
+          <Property Name="pk_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_departamento" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cargo_ciudades" Relationship="Self.cargo_ciudades_fk_ciudad_ciudades_pk_ciudad" FromRole="ciudades" ToRole="cargo_ciudades" />
+          <NavigationProperty Name="departamentos" Relationship="Self.ciudades_fk_departamento_departamentos_pk_departamento" FromRole="ciudades" ToRole="departamentos" />
+          <NavigationProperty Name="direcciones" Relationship="Self.direcciones_fk_ciudad_ciudades_pk_ciudad" FromRole="ciudades" ToRole="direcciones" />
+        </EntityType>
+        <EntityType Name="compradores">
+          <Key>
+            <PropertyRef Name="pk_comprador" />
+          </Key>
+          <Property Name="pk_comprador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tipo_documento" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="direcciones" Relationship="Self.direcciones_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="direcciones" />
+          <NavigationProperty Name="facturas" Relationship="Self.facturas_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="facturas" />
+          <NavigationProperty Name="tarjetas" Relationship="Self.tarjetas_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="tarjetas" />
+        </EntityType>
+        <EntityType Name="departamentos">
+          <Key>
+            <PropertyRef Name="pk_departamento" />
+          </Key>
+          <Property Name="pk_departamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_pais" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ciudades" Relationship="Self.ciudades_fk_departamento_departamentos_pk_departamento" FromRole="departamentos" ToRole="ciudades" />
+          <NavigationProperty Name="paises" Relationship="Self.departamentos_fk_pais_paises_pk_pais" FromRole="departamentos" ToRole="paises" />
+        </EntityType>
+        <EntityType Name="direcciones">
+          <Key>
+            <PropertyRef Name="pk_direccion" />
+          </Key>
+          <Property Name="pk_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_comprador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="tag" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_receptor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="celular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ciudades" Relationship="Self.direcciones_fk_ciudad_ciudades_pk_ciudad" FromRole="direcciones" ToRole="ciudades" />
+          <NavigationProperty Name="compradores" Relationship="Self.direcciones_fk_comprador_compradores_pk_comprador" FromRole="direcciones" ToRole="compradores" />
+        </EntityType>
+        <EntityType Name="especificaciones">
+          <Key>
+            <PropertyRef Name="pk_especificacion" />
+          </Key>
+          <Property Name="pk_especificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_producto" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="productos" Relationship="Self.especificaciones_fk_producto_productos_pk_producto" FromRole="especificaciones" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="facturas">
+          <Key>
+            <PropertyRef Name="pk_factura" />
+          </Key>
+          <Property Name="pk_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_tarjeta" Type="Int32" />
+          <Property Name="fk_comprador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_pago" Type="DateTime" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CVV" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="compradores" Relationship="Self.facturas_fk_comprador_compradores_pk_comprador" FromRole="facturas" ToRole="compradores" />
+          <NavigationProperty Name="tarjetas" Relationship="Self.facturas_fk_tarjeta_tarjetas_pk_tarjeta" FromRole="facturas" ToRole="tarjetas" />
+          <NavigationProperty Name="items" Relationship="Self.items_fk_factura_facturas_pk_factura" FromRole="facturas" ToRole="items" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="pk_item" />
+          </Key>
+          <Property Name="pk_item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_producto" Type="Int32" Nullable="false" />
+          <Property Name="fk_factura" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="facturas" Relationship="Self.items_fk_factura_facturas_pk_factura" FromRole="items" ToRole="facturas" />
+          <NavigationProperty Name="productos" Relationship="Self.items_fk_producto_productos_pk_producto" FromRole="items" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="paises">
+          <Key>
+            <PropertyRef Name="pk_pais" />
+          </Key>
+          <Property Name="pk_pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="departamentos" Relationship="Self.departamentos_fk_pais_paises_pk_pais" FromRole="paises" ToRole="departamentos" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="pk_producto" />
+          </Key>
+          <Property Name="pk_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_transporte" Type="Int32" Nullable="false" />
+          <Property Name="fk_categoria" Type="Int32" Nullable="false" />
+          <Property Name="fotos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="existencias" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="categorias" Relationship="Self.productos_fk_categoria_categorias_pk_categoria" FromRole="productos" ToRole="categorias" />
+          <NavigationProperty Name="especificaciones" Relationship="Self.especificaciones_fk_producto_productos_pk_producto" FromRole="productos" ToRole="especificaciones" />
+          <NavigationProperty Name="items" Relationship="Self.items_fk_producto_productos_pk_producto" FromRole="productos" ToRole="items" />
+          <NavigationProperty Name="transportes" Relationship="Self.productos_fk_transporte_transportes_pk_transporte" FromRole="productos" ToRole="transportes" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tarjetas">
+          <Key>
+            <PropertyRef Name="pk_tarjeta" />
+          </Key>
+          <Property Name="pk_tarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_comprador" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero_tarjeta" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_vencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CVV" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="compradores" Relationship="Self.tarjetas_fk_comprador_compradores_pk_comprador" FromRole="tarjetas" ToRole="compradores" />
+          <NavigationProperty Name="facturas" Relationship="Self.facturas_fk_tarjeta_tarjetas_pk_tarjeta" FromRole="tarjetas" ToRole="facturas" />
+        </EntityType>
+        <EntityType Name="transportes">
+          <Key>
+            <PropertyRef Name="pk_transporte" />
+          </Key>
+          <Property Name="pk_transporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cargo_ciudades" Relationship="Self.cargo_ciudades_fk_transporte_transportes_pk_transporte" FromRole="transportes" ToRole="cargo_ciudades" />
+          <NavigationProperty Name="productos" Relationship="Self.productos_fk_transporte_transportes_pk_transporte" FromRole="transportes" ToRole="productos" />
+        </EntityType>
+        <Association Name="cargo_ciudades_fk_ciudad_ciudades_pk_ciudad">
+          <End Role="ciudades" Type="Self.ciudades" Multiplicity="1" />
+          <End Role="cargo_ciudades" Type="Self.cargo_ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="pk_ciudad" />
+            </Principal>
+            <Dependent Role="cargo_ciudades">
+              <PropertyRef Name="fk_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cargo_ciudades_fk_transporte_transportes_pk_transporte">
+          <End Role="transportes" Type="Self.transportes" Multiplicity="0..1" />
+          <End Role="cargo_ciudades" Type="Self.cargo_ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transportes">
+              <PropertyRef Name="pk_transporte" />
+            </Principal>
+            <Dependent Role="cargo_ciudades">
+              <PropertyRef Name="fk_transporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_fk_categoria_categorias_pk_categoria">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="pk_categoria" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="fk_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ciudades_fk_departamento_departamentos_pk_departamento">
+          <End Role="departamentos" Type="Self.departamentos" Multiplicity="1" />
+          <End Role="ciudades" Type="Self.ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamentos">
+              <PropertyRef Name="pk_departamento" />
+            </Principal>
+            <Dependent Role="ciudades">
+              <PropertyRef Name="fk_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direcciones_fk_ciudad_ciudades_pk_ciudad">
+          <End Role="ciudades" Type="Self.ciudades" Multiplicity="1" />
+          <End Role="direcciones" Type="Self.direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ciudades">
+              <PropertyRef Name="pk_ciudad" />
+            </Principal>
+            <Dependent Role="direcciones">
+              <PropertyRef Name="fk_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direcciones_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="direcciones" Type="Self.direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="direcciones">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="facturas_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="facturas">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tarjetas_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="tarjetas" Type="Self.tarjetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="tarjetas">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="departamentos_fk_pais_paises_pk_pais">
+          <End Role="paises" Type="Self.paises" Multiplicity="1" />
+          <End Role="departamentos" Type="Self.departamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paises">
+              <PropertyRef Name="pk_pais" />
+            </Principal>
+            <Dependent Role="departamentos">
+              <PropertyRef Name="fk_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="especificaciones_fk_producto_productos_pk_producto">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="especificaciones" Type="Self.especificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="pk_producto" />
+            </Principal>
+            <Dependent Role="especificaciones">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="facturas_fk_tarjeta_tarjetas_pk_tarjeta">
+          <End Role="tarjetas" Type="Self.tarjetas" Multiplicity="0..1" />
+          <End Role="facturas" Type="Self.facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarjetas">
+              <PropertyRef Name="pk_tarjeta" />
+            </Principal>
+            <Dependent Role="facturas">
+              <PropertyRef Name="fk_tarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="items_fk_factura_facturas_pk_factura">
+          <End Role="facturas" Type="Self.facturas" Multiplicity="1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facturas">
+              <PropertyRef Name="pk_factura" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="fk_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="items_fk_producto_productos_pk_producto">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="pk_producto" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="fk_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productos_fk_transporte_transportes_pk_transporte">
+          <End Role="transportes" Type="Self.transportes" Multiplicity="1" />
+          <End Role="productos" Type="Self.productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transportes">
+              <PropertyRef Name="pk_transporte" />
+            </Principal>
+            <Dependent Role="productos">
+              <PropertyRef Name="fk_transporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_carrito_apl_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cargo_ciudades" EntityType="Self.cargo_ciudades" />
+          <EntitySet Name="categorias" EntityType="Self.categorias" />
+          <EntitySet Name="ciudades" EntityType="Self.ciudades" />
+          <EntitySet Name="compradores" EntityType="Self.compradores" />
+          <EntitySet Name="departamentos" EntityType="Self.departamentos" />
+          <EntitySet Name="direcciones" EntityType="Self.direcciones" />
+          <EntitySet Name="especificaciones" EntityType="Self.especificaciones" />
+          <EntitySet Name="facturas" EntityType="Self.facturas" />
+          <EntitySet Name="items" EntityType="Self.items" />
+          <EntitySet Name="paises" EntityType="Self.paises" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tarjetas" EntityType="Self.tarjetas" />
+          <EntitySet Name="transportes" EntityType="Self.transportes" />
+          <AssociationSet Name="cargo_ciudades_fk_ciudad_ciudades_pk_ciudad" Association="Self.cargo_ciudades_fk_ciudad_ciudades_pk_ciudad">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="cargo_ciudades" EntitySet="cargo_ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="cargo_ciudades_fk_transporte_transportes_pk_transporte" Association="Self.cargo_ciudades_fk_transporte_transportes_pk_transporte">
+            <End Role="transportes" EntitySet="transportes" />
+            <End Role="cargo_ciudades" EntitySet="cargo_ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="productos_fk_categoria_categorias_pk_categoria" Association="Self.productos_fk_categoria_categorias_pk_categoria">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="ciudades_fk_departamento_departamentos_pk_departamento" Association="Self.ciudades_fk_departamento_departamentos_pk_departamento">
+            <End Role="departamentos" EntitySet="departamentos" />
+            <End Role="ciudades" EntitySet="ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="direcciones_fk_ciudad_ciudades_pk_ciudad" Association="Self.direcciones_fk_ciudad_ciudades_pk_ciudad">
+            <End Role="ciudades" EntitySet="ciudades" />
+            <End Role="direcciones" EntitySet="direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="direcciones_fk_comprador_compradores_pk_comprador" Association="Self.direcciones_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="direcciones" EntitySet="direcciones" />
+          </AssociationSet>
+          <AssociationSet Name="facturas_fk_comprador_compradores_pk_comprador" Association="Self.facturas_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="facturas" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="tarjetas_fk_comprador_compradores_pk_comprador" Association="Self.tarjetas_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="tarjetas" EntitySet="tarjetas" />
+          </AssociationSet>
+          <AssociationSet Name="departamentos_fk_pais_paises_pk_pais" Association="Self.departamentos_fk_pais_paises_pk_pais">
+            <End Role="paises" EntitySet="paises" />
+            <End Role="departamentos" EntitySet="departamentos" />
+          </AssociationSet>
+          <AssociationSet Name="especificaciones_fk_producto_productos_pk_producto" Association="Self.especificaciones_fk_producto_productos_pk_producto">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="especificaciones" EntitySet="especificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="facturas_fk_tarjeta_tarjetas_pk_tarjeta" Association="Self.facturas_fk_tarjeta_tarjetas_pk_tarjeta">
+            <End Role="tarjetas" EntitySet="tarjetas" />
+            <End Role="facturas" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="items_fk_factura_facturas_pk_factura" Association="Self.items_fk_factura_facturas_pk_factura">
+            <End Role="facturas" EntitySet="facturas" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="items_fk_producto_productos_pk_producto" Association="Self.items_fk_producto_productos_pk_producto">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="productos_fk_transporte_transportes_pk_transporte" Association="Self.productos_fk_transporte_transportes_pk_transporte">
+            <End Role="transportes" EntitySet="transportes" />
+            <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_carrito_aplModelStoreContainer" CdmEntityContainer="db_carrito_apl_Entities">
+          <EntitySetMapping Name="cargo_ciudades">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.cargo_ciudades">
+              <MappingFragment StoreEntitySet="cargo_ciudades">
+                <ScalarProperty Name="pk_cargo_ciudades" ColumnName="pk_cargo_ciudades" />
+                <ScalarProperty Name="fk_transporte" ColumnName="fk_transporte" />
+                <ScalarProperty Name="fk_ciudad" ColumnName="fk_ciudad" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.categorias">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="pk_categoria" ColumnName="pk_categoria" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudades">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.ciudades">
+              <MappingFragment StoreEntitySet="ciudades">
+                <ScalarProperty Name="pk_ciudad" ColumnName="pk_ciudad" />
+                <ScalarProperty Name="fk_departamento" ColumnName="fk_departamento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="compradores">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.compradores">
+              <MappingFragment StoreEntitySet="compradores">
+                <ScalarProperty Name="pk_comprador" ColumnName="pk_comprador" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="tipo_documento" ColumnName="tipo_documento" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departamentos">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.departamentos">
+              <MappingFragment StoreEntitySet="departamentos">
+                <ScalarProperty Name="pk_departamento" ColumnName="pk_departamento" />
+                <ScalarProperty Name="fk_pais" ColumnName="fk_pais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="direcciones">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.direcciones">
+              <MappingFragment StoreEntitySet="direcciones">
+                <ScalarProperty Name="pk_direccion" ColumnName="pk_direccion" />
+                <ScalarProperty Name="fk_comprador" ColumnName="fk_comprador" />
+                <ScalarProperty Name="fk_ciudad" ColumnName="fk_ciudad" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="nombre_receptor" ColumnName="nombre_receptor" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="especificaciones">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.especificaciones">
+              <MappingFragment StoreEntitySet="especificaciones">
+                <ScalarProperty Name="pk_especificacion" ColumnName="pk_especificacion" />
+                <ScalarProperty Name="fk_producto" ColumnName="fk_producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facturas">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.facturas">
+              <MappingFragment StoreEntitySet="facturas">
+                <ScalarProperty Name="pk_factura" ColumnName="pk_factura" />
+                <ScalarProperty Name="fk_tarjeta" ColumnName="fk_tarjeta" />
+                <ScalarProperty Name="fk_comprador" ColumnName="fk_comprador" />
+                <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.items">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="pk_item" ColumnName="pk_item" />
+                <ScalarProperty Name="fk_producto" ColumnName="fk_producto" />
+                <ScalarProperty Name="fk_factura" ColumnName="fk_factura" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paises">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.paises">
+              <MappingFragment StoreEntitySet="paises">
+                <ScalarProperty Name="pk_pais" ColumnName="pk_pais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="pk_producto" ColumnName="pk_producto" />
+                <ScalarProperty Name="fk_transporte" ColumnName="fk_transporte" />
+                <ScalarProperty Name="fk_categoria" ColumnName="fk_categoria" />
+                <ScalarProperty Name="fotos" ColumnName="fotos" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="existencias" ColumnName="existencias" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tarjetas">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.tarjetas">
+              <MappingFragment StoreEntitySet="tarjetas">
+                <ScalarProperty Name="pk_tarjeta" ColumnName="pk_tarjeta" />
+                <ScalarProperty Name="fk_comprador" ColumnName="fk_comprador" />
+                <ScalarProperty Name="numero_tarjeta" ColumnName="numero_tarjeta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transportes">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.transportes">
+              <MappingFragment StoreEntitySet="transportes">
+                <ScalarProperty Name="pk_transporte" ColumnName="pk_transporte" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
