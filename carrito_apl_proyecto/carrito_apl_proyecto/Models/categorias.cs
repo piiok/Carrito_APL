@@ -20,7 +20,7 @@ namespace carrito_apl_proyecto.Models
         }
     
         public int pk_categoria { get; set; }
-        public string tag { get; set; }
+        public string nombre { get; set; }
     
         public virtual ICollection<productos> productos { get; set; }
     }

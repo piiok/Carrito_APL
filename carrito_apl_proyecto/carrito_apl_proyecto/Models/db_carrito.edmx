@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_carrito_aplModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db_carrito_aplModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cargo_ciudades">
           <Key>
             <PropertyRef Name="pk_cargo_ciudades" />
@@ -19,7 +19,7 @@
             <PropertyRef Name="pk_categoria" />
           </Key>
           <Property Name="pk_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tag" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
         <EntityType Name="ciudades">
           <Key>
@@ -137,7 +137,7 @@
             <PropertyRef Name="pk_transporte" />
           </Key>
           <Property Name="pk_transporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombres" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
           <Property Name="descripcion" Type="text" Nullable="false" />
         </EntityType>
         <Association Name="cargo_ciudades_fk_ciudad_ciudades_pk_ciudad">
@@ -380,8 +380,7 @@
             <End Role="tarjetas" EntitySet="tarjetas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_carrito_aplModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -401,8 +400,8 @@
             <PropertyRef Name="pk_categoria" />
           </Key>
           <Property Name="pk_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tag" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="productos" Relationship="Self.productos_fk_categoria_categorias_pk_categoria" FromRole="categorias" ToRole="productos" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ciudades">
           <Key>
@@ -543,10 +542,10 @@
             <PropertyRef Name="pk_transporte" />
           </Key>
           <Property Name="pk_transporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombres" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="cargo_ciudades" Relationship="Self.cargo_ciudades_fk_transporte_transportes_pk_transporte" FromRole="transportes" ToRole="cargo_ciudades" />
           <NavigationProperty Name="productos" Relationship="Self.productos_fk_transporte_transportes_pk_transporte" FromRole="transportes" ToRole="productos" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="cargo_ciudades_fk_ciudad_ciudades_pk_ciudad">
           <End Role="ciudades" Type="Self.ciudades" Multiplicity="1" />
@@ -807,8 +806,8 @@
           <EntitySetMapping Name="categorias">
             <EntityTypeMapping TypeName="db_carrito_aplModel.categorias">
               <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="pk_categoria" ColumnName="pk_categoria" />
-                <ScalarProperty Name="tag" ColumnName="tag" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -937,8 +936,8 @@
           <EntitySetMapping Name="transportes">
             <EntityTypeMapping TypeName="db_carrito_aplModel.transportes">
               <MappingFragment StoreEntitySet="transportes">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="pk_transporte" ColumnName="pk_transporte" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
             </EntityTypeMapping>

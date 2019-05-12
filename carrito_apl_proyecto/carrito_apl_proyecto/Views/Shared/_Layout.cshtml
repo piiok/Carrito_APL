@@ -12,7 +12,7 @@
 </head>
 <body style="min-width:576px">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark" style="min-width:577px !important;">
-        <a class="navbar-brand" href="#">Navbar</a>
+        @Html.ActionLink("TuLogoAquí", "Index", "Home", null, new { @class = "navbar-brand" })
         <form>
             <div class="input-group my-auto ">
                 <input type="text" class="form-control" placeholder="Buscador">
@@ -35,17 +35,28 @@
                 <li class="nav-item">
                     @Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link" })
                 </li>
+                <li class="nav-item">
+                    @* Texto en html, accion o funcion del controlador a ejecutar , controlador *@
+                    @Html.ActionLink("Productos", "Index", "Productos", null, new { @class = "nav-link" })
+                </li>
             </ul>
         </div>
     </nav>
         @RenderBody()
     <hr />
+    <div class="fixed-bottom">
+        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+    </div>
         <footer>
             <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
         </footer>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 </html>

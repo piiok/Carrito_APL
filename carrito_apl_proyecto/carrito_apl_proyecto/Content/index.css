@@ -1,6 +1,8 @@
 ﻿.carousel-item > img.w-100 {
-    height: calc( 100vh -  56px);
+    height: calc( (( 100% * 9) / 16) -  56px); /* Relacion 16:9 para la altura del carousel*/
     max-width: 100vw;
     min-width: 577px;
 }
+
+
 

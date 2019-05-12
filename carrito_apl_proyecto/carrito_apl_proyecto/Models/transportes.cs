@@ -21,8 +21,8 @@ namespace carrito_apl_proyecto.Models
         }
     
         public int pk_transporte { get; set; }
-        public string nombres { get; set; }
         public string descripcion { get; set; }
+        public string nombre { get; set; }
     
         public virtual ICollection<cargo_ciudades> cargo_ciudades { get; set; }
         public virtual ICollection<productos> productos { get; set; }
