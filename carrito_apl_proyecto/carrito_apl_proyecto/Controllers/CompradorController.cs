@@ -14,20 +14,17 @@ namespace carrito_apl_proyecto.Controllers
     {
         private db_carrito_apl_Entities db = new db_carrito_apl_Entities();
 
-        // GET: /Comprador/
-        public ActionResult Index()
-        {
-            return View(db.compradores.ToList());
-        }
 
-        // GET: /Comprador/Details/5
-        public ActionResult Details(string id)
+        // GET: /Comprador/Details
+        public ActionResult Details()
         {
-            if (id == null)
+            if (Session["id"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index", "login");
             }
+            var id = Session["id"];
             compradores compradores = db.compradores.Find(id);
+
             if (compradores == null)
             {
                 return HttpNotFound();
@@ -59,12 +56,13 @@ namespace carrito_apl_proyecto.Controllers
         }
 
         // GET: /Comprador/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit()
         {
-            if (id == null)
+            if (Session["id"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("index", "login");
             }
+            var id = Session["id"];
             compradores compradores = db.compradores.Find(id);
             if (compradores == null)
             {

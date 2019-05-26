@@ -62,7 +62,9 @@
                     <p class="text-danger h5 mb-0">$@Html.DisplayFor(model => precio)</p>
                     @if (Model.descuento > 0)
                     {
-                        <p class="text-secondary m-0"> <del>$@Html.DisplayFor(model => model.precio)</del> </p>
+                        <p class="text-secondary m-0">
+                            <del>$@Html.DisplayFor(model => model.precio)</del> <span class="badge badge-success">-@descuento%</span>
+                        </p>
                     }
                     <form action="" method="post" id="form1">
                         <p class="text-muted mb-0 mt-1">Unidades existentes: @cant</p>

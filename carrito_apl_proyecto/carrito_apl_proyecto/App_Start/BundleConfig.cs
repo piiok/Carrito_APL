@@ -29,7 +29,8 @@ namespace carrito_apl_proyecto
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/_Layout.css"));
             bundles.Add(new StyleBundle("~/Content/fontAwesome").Include(
                       "~/Content/css/all.css"));
 

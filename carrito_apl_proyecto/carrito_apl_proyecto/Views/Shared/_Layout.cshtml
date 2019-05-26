@@ -30,7 +30,7 @@
                     @Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Acerca", "About", "Home", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link" })
@@ -50,14 +50,16 @@
                 else
                 {
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                      <a class="nav-link dropdown-toggle dropdown-collapse" href="#" id="navbardrop" data-toggle="dropdown">
                          @Convert.ToString(Session["nombres"])
                       </a>
-                      <div class="dropdown-menu" style="right:0px !important;left:initial !important;">
-                        @Html.ActionLink("Cuenta", "Details", "Comprador", new { id = Session["id"] }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Salir", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                        
-                      </div>
+                        <div class="dropdown-menu dropdown-collapse dropdown-menu-right">
+                            @Html.ActionLink("Facturas", "Index", "Facturas", null, new { @class = "dropdown-item dropdown-collapse" })
+                            <div class="dropdown-collapse dropdown-divider"></div>
+                            @Html.ActionLink("Cuenta", "Details", "Comprador", new { id = Session["id"] }, new { @class = "dropdown-item dropdown-collapse" })
+                            @Html.ActionLink("Salir", "LogOut", "Login", null, new { @class = "dropdown-item dropdown-collapse" })
+
+                        </div>
                     </li>
                 }
                     

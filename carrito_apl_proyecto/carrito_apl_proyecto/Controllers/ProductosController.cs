@@ -47,100 +47,100 @@ namespace carrito_apl_proyecto.Controllers
         }
 
         // GET: /Productos/Create
-        public ActionResult Create()
-        {
-            ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre");
-            ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre");
+        //    ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre");
+        //    return View();
+        //}
 
         // POST: /Productos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="pk_producto,fk_transporte,fk_categoria,fotos,descuento,precio,existencias,titulo,descripcion")] productos productos)
-        {
-            if (ModelState.IsValid)
-            {
-                db.productos.Add(productos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include="pk_producto,fk_transporte,fk_categoria,fotos,descuento,precio,existencias,titulo,descripcion")] productos productos)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.productos.Add(productos);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
-            ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
-            return View(productos);
-        }
+        //    ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
+        //    ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
+        //    return View(productos);
+        //}
 
         // GET: /Productos/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            productos productos = db.productos.Find(id);
-            if (productos == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
-            ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
-            return View(productos);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    productos productos = db.productos.Find(id);
+        //    if (productos == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
+        //    ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
+        //    return View(productos);
+        //}
 
         // POST: /Productos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="pk_producto,fk_transporte,fk_categoria,fotos,descuento,precio,existencias,titulo,descripcion")] productos productos)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(productos).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
-            ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
-            return View(productos);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include="pk_producto,fk_transporte,fk_categoria,fotos,descuento,precio,existencias,titulo,descripcion")] productos productos)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(productos).State = System.Data.Entity.EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
+        //    ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
+        //    return View(productos);
+        //}
 
         // GET: /Productos/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            productos productos = db.productos.Find(id);
-            if (productos == null)
-            {
-                return HttpNotFound();
-            }
-            return View(productos);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    productos productos = db.productos.Find(id);
+        //    if (productos == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(productos);
+        //}
 
         // POST: /Productos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            productos productos = db.productos.Find(id);
-            db.productos.Remove(productos);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    productos productos = db.productos.Find(id);
+        //    db.productos.Remove(productos);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
