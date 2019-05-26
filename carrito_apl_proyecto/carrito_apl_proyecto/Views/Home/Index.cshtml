@@ -5,11 +5,11 @@
 }
 
 @Styles.Render("~/Content/index")
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselPrinciapal" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselPrinciapal" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselPrinciapal" data-slide-to="1"></li>
+        <li data-target="#carouselPrinciapal" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -22,12 +22,12 @@
             <img class="d-block w-100" src="~/Content/images/promocion1.png" alt="Third slide">
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <a class="carousel-control-prev" href="#carouselPrinciapal" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: rgba(0,0,0,0.27);box-shadow: 0 0 20px #000;"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <a class="carousel-control-next" href="#carouselPrinciapal" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: rgba(0,0,0,0.27);box-shadow: 0 0 20px #000;"></span>
         <span class="sr-only">Next</span>
     </a>
 </div>
@@ -42,21 +42,25 @@
         @foreach (var item in Model)
         {
             <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-3">
-                <div class="card">
-                    <div class="card-header">
-                        @Html.DisplayFor(modelItem => item.titulo)
-                    </div>
-                    <div class="card-body">
-                        <img class="w-100" src="~/Content/images/productos/1/1_1.jpg" alt="Alternate Text" />
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            $@Html.DisplayFor(modelItem => item.precio) - @Html.DisplayFor(modelItem => item.descuento)%
-                            <a class="float-right" href="#" role="button" data-toggle="tooltip" title="Agregar al carrito"><i class="fas fa-plus"></i></a>
+                <a class="no-decoration" href="~/Productos/Details/@Html.DisplayFor(modelItem => item.pk_producto)" draggable="false">
+                    <div class="card" id="@Html.DisplayFor(modelItem => item.pk_producto)" draggable="true" ondragstart="iluminarCarrito(event,this)" ondragend="opacarCarrito(this)">
+                        <div class="card-header">
+                            @Html.DisplayFor(modelItem => item.titulo)
                         </div>
-                        
+                        <div class="card-body">
+                            <img draggable="false" class="w-100" src="~/Content/images/productos/1/1_1.jpg" alt="Alternate Text" />
+                        </div>
+                        <div class="card-footer">
+                            <div>
+                                $@Html.DisplayFor(modelItem => item.precio) - @Html.DisplayFor(modelItem => item.descuento)%
+                                <a class="float-right" href="~/Productos/Details/@Html.DisplayFor(modelItem => item.pk_producto)" data-toggle="tooltip" title="Ver más">
+                                    <i class="fas fa-plus"> </i>
+                                </a>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         }
     </div>

@@ -12,6 +12,8 @@ namespace carrito_apl_proyecto.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class db_carrito_apl_Entities : DbContext
     {
@@ -39,5 +41,18 @@ namespace carrito_apl_proyecto.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tarjetas> tarjetas { get; set; }
         public virtual DbSet<transportes> transportes { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> IS_VALID(string pk_comprador, string password)
+        {
+            var pk_compradorParameter = pk_comprador != null ?
+                new ObjectParameter("pk_comprador", pk_comprador) :
+                new ObjectParameter("pk_comprador", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("IS_VALID", pk_compradorParameter, passwordParameter);
+        }
     }
 }

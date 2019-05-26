@@ -4,5 +4,14 @@
     min-width: 577px;
 }
 
+.no-decoration:hover {
+    text-decoration: none;
+    color:inherit;
+}
+.no-decoration{
+    text-decoration: none;
+    color:inherit;
+}
+
 
 

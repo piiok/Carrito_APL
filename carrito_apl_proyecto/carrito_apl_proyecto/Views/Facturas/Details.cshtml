@@ -1,0 +1,59 @@
+﻿@model carrito_apl_proyecto.Models.facturas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>facturas</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CVV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CVV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.compradores.nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.compradores.nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tarjetas.fk_comprador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tarjetas.fk_comprador)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pk_factura }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

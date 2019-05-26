@@ -17,6 +17,7 @@ namespace carrito_apl_proyecto.Models
         public int pk_especificacion { get; set; }
         public int fk_producto { get; set; }
         public string descripcion { get; set; }
+        public string titulo { get; set; }
     
         public virtual productos productos { get; set; }
     }

@@ -1,0 +1,29 @@
+﻿@model carrito_apl_proyecto.Models.compradores
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/login.css" rel="stylesheet" />
+<div class="wrapper fadeIn">
+    <div id="formContent" class="border">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <h2>INICIAR SESI&Oacute;N</h2>
+        </div>
+        <!-- Login Form -->
+        @using (Html.BeginForm("LoginVerify","Login"))
+        {
+            @Html.AntiForgeryToken()
+            <input type="text" id="login" class="fadeIn second" name="pk_comprador" placeholder="C&eacute;dula">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
+            <input type="submit" class="fadeIn fourth" value="Iniciar Sesi&oacute;n">
+        }
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Olvidate tu contraseña?</a>
+        </div>
+    </div>
+</div>
+

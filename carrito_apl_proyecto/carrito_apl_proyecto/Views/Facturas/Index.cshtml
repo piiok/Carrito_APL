@@ -1,0 +1,58 @@
+﻿@model IEnumerable<carrito_apl_proyecto.Models.facturas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CVV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.compradores.nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tarjetas.fk_comprador)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CVV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.compradores.nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarjetas.fk_comprador)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.pk_factura }) |
+            @Html.ActionLink("Details", "Details", new { id=item.pk_factura }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.pk_factura })
+        </td>
+    </tr>
+}
+
+</table>

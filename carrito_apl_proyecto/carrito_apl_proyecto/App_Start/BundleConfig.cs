@@ -35,6 +35,8 @@ namespace carrito_apl_proyecto
 
             bundles.Add(new StyleBundle("~/Content/index").Include(
                       "~/Content/index.css"));
+            bundles.Add(new StyleBundle("~/Content/detailsProductos").Include(
+                      "~/Content/detailsProductos.css"));
         }
     }
 }

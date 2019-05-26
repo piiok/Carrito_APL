@@ -1,0 +1,61 @@
+﻿body {
+    background-color: rgb(243, 243, 243);
+}
+.box {
+    position: relative;
+    width: 100%; /* desired width */
+}
+
+.box:before {
+    content: "";
+    display: block;
+    padding-top: 100%; /* ratio of 1:1*/
+}
+
+.box-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.tagPorcent {
+    background-color: green;
+    height: 30px;
+    width: 70px;
+    font-size: 20px;
+    position: absolute;
+    right: 5%;
+    z-index: 20;
+    color: white;
+}
+.tagPorcent:after {
+    content: "";
+    background-color: green;
+    display: block;
+    height: 10px;
+    width: 70px;
+    color: white;
+    position: absolute;
+    top: -10px;
+    z-index: 20;
+    border-radius: 7px 7px 0px 0px;
+}
+.tagPorcent:before {
+    content: "";
+    display: block;
+    color: white;
+    position: absolute;
+    left:25px;
+    bottom:-45px;
+    z-index: 20;
+    border-left: 20px solid green;
+    border-top: 35px solid transparent;
+    border-bottom: 35px solid transparent;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}

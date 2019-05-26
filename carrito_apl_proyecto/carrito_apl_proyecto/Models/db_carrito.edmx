@@ -68,6 +68,7 @@
           </Key>
           <Property Name="pk_especificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fk_producto" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="facturas">
@@ -308,6 +309,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="IS_VALID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pk_comprador" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="db_carrito_aplModelStoreContainer">
           <EntitySet Name="cargo_ciudades" EntityType="Self.cargo_ciudades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
@@ -462,6 +467,7 @@
           <Property Name="fk_producto" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="productos" Relationship="Self.especificaciones_fk_producto_productos_pk_producto" FromRole="especificaciones" ToRole="productos" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="facturas">
           <Key>
@@ -786,6 +792,10 @@
             <End Role="transportes" EntitySet="transportes" />
             <End Role="productos" EntitySet="productos" />
           </AssociationSet>
+          <FunctionImport Name="IS_VALID" ReturnType="Collection(Int32)">
+            <Parameter Name="pk_comprador" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -859,6 +869,7 @@
           <EntitySetMapping Name="especificaciones">
             <EntityTypeMapping TypeName="db_carrito_aplModel.especificaciones">
               <MappingFragment StoreEntitySet="especificaciones">
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="pk_especificacion" ColumnName="pk_especificacion" />
                 <ScalarProperty Name="fk_producto" ColumnName="fk_producto" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -942,6 +953,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="IS_VALID" FunctionName="db_carrito_aplModel.Store.IS_VALID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

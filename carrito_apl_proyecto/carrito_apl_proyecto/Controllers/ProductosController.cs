@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO; //Manejo archivos
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,6 +14,8 @@ namespace carrito_apl_proyecto.Controllers
     public class ProductosController : Controller
     {
         private db_carrito_apl_Entities db = new db_carrito_apl_Entities();
+        private string _PATH = "D:/Documentos/UIS/Encargos/GrupoAPL/Carrito_APL/carrito_apl_proyecto/carrito_apl_proyecto/Content/images/productos/";
+        private string _PATH2 = "/Content/images/productos/";
 
         // GET: /Productos/
         public ActionResult Index()
@@ -23,7 +26,7 @@ namespace carrito_apl_proyecto.Controllers
 
         // GET: /Productos/Details/5
         public ActionResult Details(int? id)
-        {
+        {   
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -32,6 +35,13 @@ namespace carrito_apl_proyecto.Controllers
             if (productos == null)
             {
                 return HttpNotFound();
+            }else{
+                try
+                {
+                    ViewBag.fotos = Directory.GetFiles(_PATH + productos.fotos).Select(f => _PATH2 + productos.fotos + System.IO.Path.GetFileName(f)).ToList();
+                }catch(Exception e){
+                    throw e;
+                }          
             }
             return View(productos);
         }
@@ -89,7 +99,7 @@ namespace carrito_apl_proyecto.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productos).State = EntityState.Modified;
+                db.Entry(productos).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
