@@ -56,8 +56,8 @@
                         <div class="dropdown-menu dropdown-collapse dropdown-menu-right">
                             @Html.ActionLink("Facturas", "Index", "Facturas", null, new { @class = "dropdown-item dropdown-collapse" })
                             <div class="dropdown-collapse dropdown-divider"></div>
-                            @Html.ActionLink("Cuenta", "Details", "Comprador", new { id = Session["id"] }, new { @class = "dropdown-item dropdown-collapse" })
-                            @Html.ActionLink("Salir", "LogOut", "Login", null, new { @class = "dropdown-item dropdown-collapse" })
+                            @Html.ActionLink("Cuenta", "Edit", "Comprador", new { id = Session["id"] }, new { @class = "dropdown-item dropdown-collapse" })
+                            <a class="dropdown-item dropdown-collapse" href="#" data-toggle="modal" data-target="#logoutModal">Salir</a>
 
                         </div>
                     </li>
@@ -72,6 +72,7 @@
     <div style="right: 7px; position: fixed; bottom: 7px; z-index: 15;">
         <button id="carrito" ondrop="agregarAlCarrito(event)" ondragover="allowDrop(event)" type="button" class="btn btn-info rounded-circle"> <i class="fas fa-shopping-cart" style="padding-bottom: 1px; padding-top: 1px;"></i> </button>
     </div>
+    
         <footer>
             <p class="text-center">&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
         </footer>
@@ -87,6 +88,23 @@
         }
     </script>
     @RenderSection("scripts", required: false)
-    
+    <div class="modal fade" id="logoutModal" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar sesi&oacute;n</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">¿Esta seguro que desea cerrar sesi&oacute;n?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                    @Html.ActionLink("Si", "LogOut", "Login", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -1,4 +1,10 @@
-﻿@media (max-width: 767px) {
+﻿@media (max-width: 582px) {
+    .modal-backdrop {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+@media (max-width: 767px) {
   .dropdown-collapse.dropdown-toggle {
     display: none !important;
   }
