@@ -41,6 +41,7 @@ namespace carrito_apl_proyecto.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tarjetas> tarjetas { get; set; }
         public virtual DbSet<transportes> transportes { get; set; }
+        public virtual DbSet<sesiones> sesiones { get; set; }
     
         public virtual ObjectResult<Nullable<int>> IS_VALID(string pk_comprador, string password)
         {

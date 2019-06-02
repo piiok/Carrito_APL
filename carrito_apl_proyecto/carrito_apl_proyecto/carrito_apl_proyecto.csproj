@@ -220,6 +220,9 @@
     <Compile Include="Models\productos.cs">
       <DependentUpon>db_carrito.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sesiones.cs">
+      <DependentUpon>db_carrito.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>db_carrito.tt</DependentUpon>
     </Compile>

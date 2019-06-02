@@ -33,6 +33,8 @@
         <AssociationConnector Association="db_carrito_aplModel.items_fk_factura_facturas_pk_factura" ManuallyRouted="false" />
         <AssociationConnector Association="db_carrito_aplModel.items_fk_producto_productos_pk_producto" ManuallyRouted="false" />
         <AssociationConnector Association="db_carrito_aplModel.productos_fk_transporte_transportes_pk_transporte" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_carrito_aplModel.sesiones" Width="1.5" PointX="6" PointY="14.125" />
+        <AssociationConnector Association="db_carrito_aplModel.sesiones_fk_comprador_compradores_pk_comprador" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

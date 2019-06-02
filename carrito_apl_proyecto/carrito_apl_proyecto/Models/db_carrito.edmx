@@ -112,6 +112,16 @@
           <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="descripcion" Type="text" Nullable="false" />
         </EntityType>
+        <EntityType Name="sesiones">
+          <Key>
+            <PropertyRef Name="pk_sesiones" />
+          </Key>
+          <Property Name="pk_sesiones" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_comprador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="fecha_logout" Type="datetime" />
+          <Property Name="fecha_login" Type="datetime" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -297,6 +307,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="sesiones_fk_comprador_compradores_pk_comprador">
+          <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
+          <End Role="sesiones" Type="Self.sesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="sesiones">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="tarjetas_fk_comprador_compradores_pk_comprador">
           <End Role="compradores" Type="Self.compradores" Multiplicity="1" />
           <End Role="tarjetas" Type="Self.tarjetas" Multiplicity="*" />
@@ -325,6 +347,7 @@
           <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="paises" EntityType="Self.paises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sesiones" EntityType="Self.sesiones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tarjetas" EntityType="Self.tarjetas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transportes" EntityType="Self.transportes" Schema="dbo" store:Type="Tables" />
@@ -380,6 +403,10 @@
             <End Role="transportes" EntitySet="transportes" />
             <End Role="productos" EntitySet="productos" />
           </AssociationSet>
+          <AssociationSet Name="sesiones_fk_comprador_compradores_pk_comprador" Association="Self.sesiones_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="sesiones" EntitySet="sesiones" />
+          </AssociationSet>
           <AssociationSet Name="tarjetas_fk_comprador_compradores_pk_comprador" Association="Self.tarjetas_fk_comprador_compradores_pk_comprador">
             <End Role="compradores" EntitySet="compradores" />
             <End Role="tarjetas" EntitySet="tarjetas" />
@@ -434,6 +461,7 @@
           <NavigationProperty Name="direcciones" Relationship="Self.direcciones_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="direcciones" />
           <NavigationProperty Name="facturas" Relationship="Self.facturas_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="facturas" />
           <NavigationProperty Name="tarjetas" Relationship="Self.tarjetas_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="tarjetas" />
+          <NavigationProperty Name="sesiones" Relationship="db_carrito_aplModel.sesiones_fk_comprador_compradores_pk_comprador" FromRole="compradores" ToRole="sesiones" />
         </EntityType>
         <EntityType Name="departamentos">
           <Key>
@@ -796,7 +824,35 @@
             <Parameter Name="pk_comprador" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="sesiones" EntityType="db_carrito_aplModel.sesiones" />
+          <AssociationSet Name="sesiones_fk_comprador_compradores_pk_comprador" Association="db_carrito_aplModel.sesiones_fk_comprador_compradores_pk_comprador">
+            <End Role="compradores" EntitySet="compradores" />
+            <End Role="sesiones" EntitySet="sesiones" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sesiones">
+          <Key>
+            <PropertyRef Name="pk_sesiones" />
+          </Key>
+          <Property Name="pk_sesiones" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_comprador" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_login" Type="DateTime" Precision="3" />
+          <Property Name="fecha_logout" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="compradores" Relationship="db_carrito_aplModel.sesiones_fk_comprador_compradores_pk_comprador" FromRole="sesiones" ToRole="compradores" />
+        </EntityType>
+        <Association Name="sesiones_fk_comprador_compradores_pk_comprador">
+          <End Type="db_carrito_aplModel.compradores" Role="compradores" Multiplicity="1" />
+          <End Type="db_carrito_aplModel.sesiones" Role="sesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compradores">
+              <PropertyRef Name="pk_comprador" />
+            </Principal>
+            <Dependent Role="sesiones">
+              <PropertyRef Name="fk_comprador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -954,6 +1010,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="IS_VALID" FunctionName="db_carrito_aplModel.Store.IS_VALID" />
+          <EntitySetMapping Name="sesiones">
+            <EntityTypeMapping TypeName="db_carrito_aplModel.sesiones">
+              <MappingFragment StoreEntitySet="sesiones">
+                <ScalarProperty Name="fecha_logout" ColumnName="fecha_logout" />
+                <ScalarProperty Name="fecha_login" ColumnName="fecha_login" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="fk_comprador" ColumnName="fk_comprador" />
+                <ScalarProperty Name="pk_sesiones" ColumnName="pk_sesiones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

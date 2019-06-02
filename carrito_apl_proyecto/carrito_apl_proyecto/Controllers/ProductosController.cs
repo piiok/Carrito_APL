@@ -47,31 +47,31 @@ namespace carrito_apl_proyecto.Controllers
         }
 
         // GET: /Productos/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre");
-        //    ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre");
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
+            ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre");
+            ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre");
+            return View();
+        }
 
-        // POST: /Productos/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include="pk_producto,fk_transporte,fk_categoria,fotos,descuento,precio,existencias,titulo,descripcion")] productos productos)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.productos.Add(productos);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+         //POST: /Productos/Create
+         //Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+         //más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include="pk_producto,fk_transporte,fk_categoria,fotos,descuento,precio,existencias,titulo,descripcion")] productos productos)
+        {
+            if (ModelState.IsValid)
+            {
+                db.productos.Add(productos);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
-        //    ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
-        //    return View(productos);
-        //}
+            ViewBag.fk_categoria = new SelectList(db.categorias, "pk_categoria", "nombre", productos.fk_categoria);
+            ViewBag.fk_transporte = new SelectList(db.transportes, "pk_transporte", "nombre", productos.fk_transporte);
+            return View(productos);
+        }
 
         // GET: /Productos/Edit/5
         //public ActionResult Edit(int? id)

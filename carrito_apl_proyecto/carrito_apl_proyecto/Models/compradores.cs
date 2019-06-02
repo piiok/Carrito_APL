@@ -19,6 +19,7 @@ namespace carrito_apl_proyecto.Models
             this.direcciones = new HashSet<direcciones>();
             this.facturas = new HashSet<facturas>();
             this.tarjetas = new HashSet<tarjetas>();
+            this.sesiones = new HashSet<sesiones>();
         }
     
         public string pk_comprador { get; set; }
@@ -33,5 +34,6 @@ namespace carrito_apl_proyecto.Models
         public virtual ICollection<direcciones> direcciones { get; set; }
         public virtual ICollection<facturas> facturas { get; set; }
         public virtual ICollection<tarjetas> tarjetas { get; set; }
+        public virtual ICollection<sesiones> sesiones { get; set; }
     }
 }
